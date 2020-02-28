@@ -1,0 +1,18 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+ipykernel = "*"
+pandas = "*"
+numpy = "*"
+blackcellmagic = "*"
+pymongo = "*"
+bs4 = "*"
+requests = "*"
+
+[requires]
+python_version = "3.8"
