@@ -13,6 +13,11 @@ blackcellmagic = "*"
 pymongo = "*"
 bs4 = "*"
 requests = "*"
+selenium = "*"
+lab-black = "*"
+nb-black = "*"
+splinter = "*"
+lxml = "*"
 
 [requires]
 python_version = "3.8"
