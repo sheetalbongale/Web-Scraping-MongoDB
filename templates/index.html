@@ -1,44 +1,132 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cyborg/bootstrap.min.css" rel="stylesheet" integrity="sha384-l7xaoY0cJM4h9xh1RfazbgJVUZvdtyLWPueWNtLAphf/UbBgOVzqbOTogxPwYLHM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../static/style.css">
-    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
     <title>Mission to Mars</title>
-  </head>
+</head>
 
 <body>
-  <header>
-      
-    <!-- Full Page Intro -->
-    <div class="view" style="background-image: url('../static/mars-background.jpg'); background-repeat: no-repeat; background-position: center top; background-size: cover; background-position: center center;">
-      <!-- Mask & flexbox options-->
-      <div class="mask rgba-black-light align-items-center">
+
+    <!-- Hero Page -->
+    <div class="view" style="background-image: url('../static/mars-background.jpg'); background-repeat: no-repeat; background-position: center top; background-size: cover; background-position: center;">
         <!-- Content -->
-        <div class="container-fluid">
-          <!--Grid row-->
-            <!--Grid column-->
-            <div class="col-md-12 mb-4 white-text text-center">
-              <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5"><strong>MISSION TO MARS</strong></h1>
-              <h5 class="js-scroll-trigger text-uppercase mb-4 white-text" href="#scrape-data"><strong>Scrape New Data</strong></h5>
-              <div class="arrow js-scroll-trigger"><a href="#scrape-data"><img src="../static/down-arrow.png"></a></div>
-          </div>
-        </div>   
-      </div>   
+        <div class="container-fluid d-flex h-100 align-items-center">
+            <div class="col-md-12 mb-4 white-text text-center mx-auto text-center">
+                <h1 class="white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 text-white-50 mx-auto mt-2 mb-5"><strong>MISSION TO MARS</strong></h1>
+                <h5><a href="/scrape" class="btn btn-outline-secondary text-white js-scroll-trigger text-uppercase mx-auto mt-2 mb-5"><strong>Scrape New Data</strong></a></h5>
+                <div class="arrow js-scroll-trigger mx-auto mt-2 mb-5">
+                    <a href="#scrape"><img src="../static/down-arrow.png"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    <div class="container-fluid news" style="padding-left: 6%;" id="scrape">
+        <div class="row no-gutter align-items-center">
+            <div class="card">
+
+                <h4 class="text-center card-title">Latest Mars News</h4>
+                <p class="card-subtitle text-white mb-2 " id="font">{{ mars.news }}</p>
+                <p class="card-text">{{ mars.teaser }}</p>
+                <a href={{ mars.news_url }} target="_blank">Check all the latest News</a>
+
+            </div>
+        </div>
+    </div>
+    <div class="row no-gutter" style="padding-left: 40px;">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <style>
+                        .zoom:hover {
+                            transform: scale(1.25);
+                        }
+                    </style>
+                    <h4 class="card-title text-center">Featured Mars Image</h4>
+                    <p class="card-text">{{ mars.featured_image_title }}</p>
+                    <img class="card-img-bottom img-fluid zoom" src="{{ mars.featured_image_url }}" alt="Featured Mars Image">
+                    <hr>
+                    <a href={{ mars.jpl_url }} target="_blank">Check all the featured Images</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 card" style="padding-left: 50px;">
+            <div class="card-body">
+                <div class="col-md-12">
+
+                    <h4 class="card-title ">Current Weather on Mars</h4>
+                    <p class="card-text" id="dark-font">{{ mars.weather }}</p>
+
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="col-md-12">
+                    <div>
+
+                        <h4 class="card-title">Mars Facts</h4>
+                        <p class="card-text" id="dark-font">{{ mars.facts | safe }}</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <h4 class="text-lg-center text-center">Mars Hemispheres</h4>
+        <div class="col-md-12">
+            <div class="row">
+                <style>
+                    .zoom:hover {
+                        transform: scale(1.25);
+                    }
+                </style>
+                {% for hemisphere in mars.hemispheres %}
+                <div class="col-md-6">
+                    <div class="card text-white border-warning mb-3" style="margin: 40px;">
+                        <img class="card-img-top img-fluid zoom" src="{{ hemisphere.hem_img_url }}" />
+                        <div class="card-body">
+                            <p class="card-text">{{ hemisphere.Title }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
-  </header>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- Footer Section -->
+    <footer class="footer navbar-expand-lg navbar-light bg-light text-center text-white">
+        <div class="footer-copyright white-text">
+            <hr>
+            <h4><div class="top"><span> Sheetal Bongale © 2020</span>&nbsp; &nbsp;
+                  <a class="top text-white font-awesome" href="https://github.com/sheetalbongale/"> <i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
+                  &nbsp;
+                  <a class="top text-white font-awesome" href="https://www.linkedin.com/in/sheetal-bongale"> <i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a>
+              </div></h4>
+            <br>
 
-<!-- JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-   <!-- Custom scripts for this template -->
-   <script src="../js/grayscale.min.js"></script>
+        </div>
+    </footer>
+    <!-- JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- Custom scripts for this template -->
+    <script src="../js/grayscale.min.js"></script>
 </body>
+
 </html>
