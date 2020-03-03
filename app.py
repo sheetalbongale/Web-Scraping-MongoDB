@@ -11,6 +11,7 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/mars_app")
 
 # Flask Routes
 
+
 @app.route("/")
 def home():
 

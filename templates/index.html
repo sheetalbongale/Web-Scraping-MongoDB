@@ -14,9 +14,8 @@
 
 <body>
 
-    <!-- Hero Page -->
+    <!-- Landing Home Page -->
     <div class="view" style="background-image: url('../static/mars-background.jpg'); background-repeat: no-repeat; background-position: center top; background-size: cover; background-position: center;">
-        <!-- Content -->
         <div class="container-fluid d-flex h-100 align-items-center">
             <div class="col-md-12 mb-4 white-text text-center mx-auto text-center">
                 <h1 class="white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 text-white-50 mx-auto mt-2 mb-5"><strong>MISSION TO MARS</strong></h1>
@@ -28,20 +27,20 @@
         </div>
     </div>
    
-
-    <div class="container-fluid news" style="padding-left: 6%;" id="scrape">
+    <!-- Main Content -->
+    <div class="container-fluid news" style="padding-left: 6%; id="scrape">
         <div class="row no-gutter align-items-center">
             <div class="card">
 
                 <h4 class="text-center card-title">Latest Mars News</h4>
                 <p class="card-subtitle text-white mb-2 " id="font">{{ mars.news }}</p>
                 <p class="card-text">{{ mars.teaser }}</p>
-                <a href={{ mars.news_url }} target="_blank">Check all the latest News</a>
+                <a href={{ mars.news_url }} target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp; Check all the latest News</a>
 
             </div>
         </div>
     </div>
-    <div class="row no-gutter" style="padding-left: 40px;">
+    <div class="row" style="padding-left: 40px;">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -54,7 +53,7 @@
                     <p class="card-text">{{ mars.featured_image_title }}</p>
                     <img class="card-img-bottom img-fluid zoom" src="{{ mars.featured_image_url }}" alt="Featured Mars Image">
                     <hr>
-                    <a href={{ mars.jpl_url }} target="_blank">Check all the featured Images</a>
+                    <a href={{ mars.jpl_url }} target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp; Check all the featured Images</a>
 
                 </div>
             </div>
@@ -62,25 +61,21 @@
         <div class="col-md-6 card" style="padding-left: 50px;">
             <div class="card-body">
                 <div class="col-md-12">
-
                     <h4 class="card-title ">Current Weather on Mars</h4>
                     <p class="card-text" id="dark-font">{{ mars.weather }}</p>
-
                 </div>
             </div>
             <div class="card-body">
                 <div class="col-md-12">
                     <div>
-
                         <h4 class="card-title">Mars Facts</h4>
                         <p class="card-text" id="dark-font">{{ mars.facts | safe }}</p>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container">
         <h4 class="text-lg-center text-center">Mars Hemispheres</h4>
         <div class="col-md-12">
             <div class="row">
@@ -94,7 +89,7 @@
                     <div class="card text-white border-warning mb-3" style="margin: 40px;">
                         <img class="card-img-top img-fluid zoom" src="{{ hemisphere.hem_img_url }}" />
                         <div class="card-body">
-                            <p class="card-text">{{ hemisphere.Title }}</p>
+                            <p class="card-text">{{ hemisphere.title }}</p>
                         </div>
                     </div>
                 </div>

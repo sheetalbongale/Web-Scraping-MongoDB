@@ -11,7 +11,7 @@ import urllib.parse
 from bs4 import BeautifulSoup as bs
 import re
 from selenium import webdriver
-from splinter import browser
+from splinter import Browser
 
 
 def scrape():
@@ -36,7 +36,8 @@ def scrape():
     driver.close()
 
     teaser_url = (
-        "https://mars.nasa.gov/news/" + soup.find("div", class_="list_text").a["href"]
+        "https://mars.nasa.gov/news/" +
+        soup.find("div", class_="list_text").a["href"]
     )
 
     r = requests.get(teaser_url)
@@ -53,9 +54,11 @@ def scrape():
     html = driver.page_source
     img_soup = bs(html, "html.parser")
 
-    img_base_url = img_soup.find("article", {"class": "carousel_item"})["style"]
+    img_base_url = img_soup.find(
+        "article", {"class": "carousel_item"})["style"]
 
-    featured_image_url = re.findall(r"url\((.*?)\)", img_base_url)[0].replace("'", "")
+    featured_image_url = re.findall(
+        r"url\((.*?)\)", img_base_url)[0].replace("'", "")
     featured_image_url = "https://www.jpl.nasa.gov" + featured_image_url
     featured_image_title = img_soup.find(
         "h1", class_="media_feature_title"
@@ -70,7 +73,8 @@ def scrape():
     html = r.text
     weather_soup = bs(html, "html.parser")
 
-    mars_weather = weather_soup.find_all("div", class_="js-tweet-text-container")
+    mars_weather = weather_soup.find_all(
+        "div", class_="js-tweet-text-container")
     mars_weather = mars_weather[0].text[:-26]
 
     #### Mars Facts ####
@@ -89,18 +93,21 @@ def scrape():
     #### Mars Hemispheres ####
     # scrape to obtain high resolution images for each of Mar's hemispheres.
     # HEM_URL = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
+    browser = Browser('firefox')
+    browser.visit(HEM_URL)
 
-    mars_hemispheres = requests.get(HEM_URL).text
-    astro_soup = bs(mars_hemispheres, "html.parser")
-
+    urls = [(a.text, a['href']) for a in browser
+            .find_by_css('div[class="description"] a')]
     hemisphere_dict = []
-    hemisphere_dict = [
-        {
-            "Title": e.text.strip("Enhanced"),
-            "hem_img_url": ("https://astrogeology.usgs.gov" + e["href"]),
-        }
-        for e in astro_soup.find_all(class_="itemLink product-item")
-    ]
+    for title, url in urls:
+        product_dict = {}
+        product_dict['title'] = title
+        browser.visit(url)
+        img_url = browser.find_by_css('img[class="wide-image"]')['src']
+        product_dict['hem_img_url'] = img_url
+        hemisphere_dict.append(product_dict)
+        
+    browser.quit()
 
     # Store all the scrapped data in a dictionary
     mars_dict = {
