@@ -28,11 +28,12 @@
     </div>
    
     <!-- Main Content -->
-    <div class="container-fluid news" style="padding-left: 12%;" id="scrape">
+    <!-- Mars News -->
+    <div class="container-fluid news" style="padding-left: 100px; padding-left: 100px;" id="scrape">
         <div class="row no-gutter align-items-center">
             <div class="card">
 
-                <h4 class="text-center card-title">Latest Mars News</h4>
+                <h4 class="card-title">Latest Mars News</h4>
                 <p class="card-subtitle text-white mb-2 " id="font">{{ mars.news }}</p>
                 <p class="card-text">{{ mars.teaser }}</p>
                 <a href={{ mars.news_url }} target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp; Check all the latest News</a>
@@ -40,8 +41,10 @@
             </div>
         </div>
     </div>
+    <!-- Left Card -->
+    <!-- Mars Featured Image -->
     <div class="container-fluid">
-    <div class="row" style="padding-left: 100px;">
+    <div class="row" style="padding: 50px;">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -50,7 +53,7 @@
                             transform: scale(1.25);
                         }
                     </style>
-                    <h4 class="card-title text-center">Featured Mars Image</h4>
+                    <h4 class="card-title">Featured Mars Image</h4>
                     <p class="card-text">{{ mars.featured_image_title }}</p>
                     <img class="card-img-bottom img-fluid zoom" src="{{ mars.featured_image_url }}" alt="Featured Mars Image">
                     <hr>
@@ -59,17 +62,20 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 card" style="padding-left: 50px;">
+        <!-- Right Card -->
+        <div class="col-md-6 card">
+            <!-- Weather -->
             <div class="card-body">
                 <div class="col-md-12">
-                    <h4 class="card-title ">Current Weather on Mars</h4>
+                    <h4 class="card-title">Current Weather on Mars</h4>
                     <p class="card-text" id="dark-font">{{ mars.weather }}</p>
                 </div>
             </div>
+            <!-- Mars Fact -->
             <div class="card-body">
                 <div class="col-md-12">
                     <div>
-                        <h4 class="card-title">Mars Facts</h4>
+                        <h4 class="card-title ">Mars Facts</h4>
                         <p class="card-text" id="dark-font">{{ mars.facts | safe }}</p>
                     </div>
                 </div>
@@ -77,6 +83,7 @@
         </div>
     </div>
   </div>
+  <!-- Hemispheres -->
     <div class="container">
         <h4 class="text-lg-center text-center">Mars Hemispheres</h4>
         <div class="col-md-12">
@@ -104,6 +111,7 @@
     <br>
     <br>
     <br>
+
     <!-- Footer Section -->
     <footer class="footer navbar-expand-lg navbar-light bg-light text-center text-white">
         <div class="footer-copyright white-text">
@@ -117,6 +125,7 @@
 
         </div>
     </footer>
+    
     <!-- JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
